@@ -115,6 +115,7 @@ const App = () => {
           console.log("=== Minted finish: ", from, tokenId.toNumber())
 
           setTokenId(tokenId);
+          setIsMinting(false);
 
           // alert(`Hey there! We've minted your NFT and sent it to your wallet. 
           // It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the
@@ -161,6 +162,7 @@ const App = () => {
     return <>
     { tokenId &&
       <div className="mintingInfo">
+        <p className="sub-text-smaller">Awesome, here is your NFT</p>
         <div className="trxInfo">Tx Hash: <a href={`https://goerli.etherscan.io/tx/${contractHash}`} target="_blank" rel="noreferrer">{contractHash}</a> </div>
         {tokenId && <div className="openSeaInfo">Opensea url: <a href={`${OPENSEA_LINK}/${CONTRACT_ADDRESS}/${tokenId}`} target="_blank" rel="noreferrer">{CONTRACT_ADDRESS}</a> </div>}
       </div>
@@ -235,12 +237,12 @@ const App = () => {
         <div className={isRightNetwork ? "alert-chain" : "hide-alert-chain"}>You are not connected to Goerli network, please switch it! </div>
           <p className="header gradient-text">JR-SquareNFT Collections</p>
           <p className="sub-text">
-            Our 3 Words NFT Each unique, with nice background color and it is free.
+          Our NFT 3 Words Each one is unique, with a nice background color.
           </p>
-          <p className="sub-text">
-            To minting our NFT you need metamask wallet and Ethereum Testnet Goerli.
+          <p className="sub-text-smaller">
+          To minting our NFT, you will need a Metamask wallet and an Ethereum Testnet Goerli.
           </p>
-          <p className="sub-text">Please button bellow to start minting.</p>
+          <p className="sub-text-smaller">Please click the button below to start minting.  It's free</p>
           <br/>
 
           {currentAccount === "" ? renderNotConnectedContainer() :  
