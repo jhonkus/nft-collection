@@ -149,12 +149,17 @@ const App = () => {
   )
 
   const renderMintGif = () => {
-    return <img src = {progresGif} alt="minting animation"/>
+    return <>
+    <img src = {progresGif} alt="minting animation"/>
+    <p style={{color: 'yellow'}}> <i>Please wait, minting ...</i>
+      </p>
+    </>
+    
   }
 
   const renderOpenSeaInfo = () =>{
     return <>
-    { contractHash &&
+    { tokenId &&
       <div className="mintingInfo">
         <div className="trxInfo">Tx Hash: <a href={`https://goerli.etherscan.io/tx/${contractHash}`} target="_blank" rel="noreferrer">{contractHash}</a> </div>
         {tokenId && <div className="openSeaInfo">Opensea url: <a href={`${OPENSEA_LINK}/${CONTRACT_ADDRESS}/${tokenId}`} target="_blank" rel="noreferrer">{CONTRACT_ADDRESS}</a> </div>}
@@ -167,6 +172,8 @@ const App = () => {
       const { ethereum } = window;
 
       if (ethereum) {
+        setTokenId("");
+
         setIsWaitingConfiramtion(true);
    
         const provider = new ethers.providers.Web3Provider(ethereum);
@@ -226,7 +233,7 @@ const App = () => {
         
         <div className="header-container">
         <div className={isRightNetwork ? "alert-chain" : "hide-alert-chain"}>You are not connected to Goerli network, please switch it! </div>
-          <p className="header gradient-text">JR-SquareNFT Collection</p>
+          <p className="header gradient-text">JR-SquareNFT Collections</p>
           <p className="sub-text">
             Our 3 Words NFT Each unique, with nice background color and it is free.
           </p>
@@ -238,7 +245,7 @@ const App = () => {
 
           {currentAccount === "" ? renderNotConnectedContainer() :  
           (isMinting ? renderMintGif() : renderMintUI())}
-          {isWaitingConfiramtion && <div style={{color: 'white'}}><br/>Waiting confirmation! ...</div>}
+          {isWaitingConfiramtion && <div style={{color: 'yellow'}}><br/><i>Please wait, waiting confirmation! ...</i></div>}
         
         
         
@@ -246,8 +253,10 @@ const App = () => {
 
         {renderOpenSeaInfo()}
         <div style={{margin:'50px'}}>
-          <p className="sub-text">Some of our 3 Words NFT</p>
-          <img src={collections} alt="nft collections" style={{width:'600px', margin: 'auto'}}/>
+          <p className="sub-text">Some of our 3 Words NFT Collections</p>
+          <a href="https://testnets.opensea.io/collection/jr-squarenft-doctvrvpku" rel="noreferrer" target="_blank"  alt="3 words nft">
+            <img src={collections} alt="nft collections" style={{width:'600px', margin: 'auto'}}/>
+          </a>
         </div>
         <div className="footer-container">
           <a
