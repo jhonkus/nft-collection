@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import "./styles/App.css";
 import myEpicNft from './utils/MyEpicNFT.json';
 import progresGif from "./assets/progress.gif";
+import collections from "./assets/collections.png";
+
 
 // Constants
 const TWITTER_HANDLE = "pkusma";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = "https://testnets.opensea.io/assets/";
-const TOTAL_MINT_COUNT = 50;
+// const TOTAL_MINT_COUNT = 50;
 
 const CONTRACT_ADDRESS = "0xEA17862D27b4C7EA695B190aB81Dccc4c462A378";
 
@@ -224,11 +226,16 @@ const App = () => {
         
         <div className="header-container">
         <div className={isRightNetwork ? "alert-chain" : "hide-alert-chain"}>You are not connected to Goerli network, please switch it! </div>
-          <p className="header gradient-text">Classic NFT Collection</p>
+          <p className="header gradient-text">JR-SquareNFT Collection</p>
           <p className="sub-text">
-            Each unique. Each beautiful. Discover your NFT today.
+            Our 3 Words NFT Each unique, with nice background color and it is free.
           </p>
-          
+          <p className="sub-text">
+            To minting our NFT you need metamask wallet and Ethereum Testnet Goerli.
+          </p>
+          <p className="sub-text">Please button bellow to start minting.</p>
+          <br/>
+
           {currentAccount === "" ? renderNotConnectedContainer() :  
           (isMinting ? renderMintGif() : renderMintUI())}
           {isWaitingConfiramtion && <div style={{color: 'white'}}><br/>Waiting confirmation! ...</div>}
@@ -238,7 +245,10 @@ const App = () => {
         </div>
 
         {renderOpenSeaInfo()}
-
+        <div style={{margin:'50px'}}>
+          <p className="sub-text">Some of our 3 Words NFT</p>
+          <img src={collections} alt="nft collections" style={{width:'600px', margin: 'auto'}}/>
+        </div>
         <div className="footer-container">
           <a
             className="footer-text"
