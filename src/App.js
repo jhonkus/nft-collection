@@ -9,7 +9,7 @@ import collections from "./assets/collections.png";
 // Constants
 const TWITTER_HANDLE = "pkusma";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = "https://testnets.opensea.io/assets/";
+const OPENSEA_LINK = "https://testnets.opensea.io/assets";
 // const TOTAL_MINT_COUNT = 50;
 
 const CONTRACT_ADDRESS = "0xEA17862D27b4C7EA695B190aB81Dccc4c462A378";
@@ -25,8 +25,11 @@ const App = () => {
   const [isWaitingConfiramtion, setIsWaitingConfiramtion] = useState(false);
   const [tokenId, setTokenId] = useState("");
   const [contractHash, setContractHash] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   
   const checkIfWalletIsConnected = async () => {
+
+    setErrorMsg("");
     /*
      * First make sure we have access to window.ethereum
      */
@@ -129,7 +132,11 @@ const App = () => {
         console.log("Ethereum object doesn't exist!");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error.code)
+      setErrorMsg(error.code);
+
+      setIsMinting(false);
+      setIsWaitingConfiramtion(false);
     }
   }
 
@@ -170,6 +177,7 @@ const App = () => {
     </>
   }
   const askContractToMintNft = async () => {
+    setErrorMsg("");
     try {
       const { ethereum } = window;
 
@@ -215,9 +223,12 @@ const App = () => {
         console.log("Ethereum object doesn't exist!");
       }
     } catch (error) {
+      
+      setErrorMsg(error.code);
+
       setIsMinting(false);
       setIsWaitingConfiramtion(false);
-      console.log(error);
+      console.log("==  ERROR CODE: ", error.code, " ==");
     }
   };
 
@@ -249,8 +260,14 @@ const App = () => {
           (isMinting ? renderMintGif() : renderMintUI())}
           {isWaitingConfiramtion && <div style={{color: 'yellow'}}><br/><i>Please wait, waiting confirmation! ...</i></div>}
         
-        
-        
+        {errorMsg &&  errorMsg === 'REPLACEMENT_UNDERPRICED'  &&  <div style={{color: 'red'}}>
+          <br/><i>Error when minting, goerli network is busy, please use more gas fees.</i></div>
+        }
+
+        {errorMsg && errorMsg !== 'REPLACEMENT_UNDERPRICED'  &&  <div style={{color: 'red'}}>
+          <br/><i>Error when minting, please try in a few minutes.</i></div>
+        }
+
         </div>
 
         {renderOpenSeaInfo()}
