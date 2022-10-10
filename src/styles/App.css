@@ -28,6 +28,11 @@
   color: white;
 }
 
+.sub-text-smaller {
+  font-size: 16px;
+  color: white;
+}
+
 .gradient-text {
   background: -webkit-linear-gradient(left, #60c657 30%, #35aee2 60%);
   background-clip: text;
@@ -103,10 +108,12 @@
 .mintingInfo{
   border: 1px solid greenyellow;
   margin: auto;
-  padding: 20px;
+  margin-top: 60px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
   max-width: 700px;
   align-content: center;
-  margin-top: 20px;
   color:white;
 }
 
