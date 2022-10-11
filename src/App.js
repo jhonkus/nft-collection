@@ -12,7 +12,7 @@ const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const OPENSEA_LINK = "https://testnets.opensea.io/assets";
 // const TOTAL_MINT_COUNT = 50;
 
-const CONTRACT_ADDRESS = "0xEA17862D27b4C7EA695B190aB81Dccc4c462A378";
+const CONTRACT_ADDRESS = "0xE2149E5d69C0dF0B0BeaCc1DCc03517957b93D8D";
 
 const App = () => {
   /*
@@ -246,7 +246,7 @@ const App = () => {
         
         <div className="header-container">
         <div className={isRightNetwork ? "alert-chain" : "hide-alert-chain"}>You are not connected to Goerli network, please switch it! </div>
-          <p className="header gradient-text">JR-SquareNFT Collections</p>
+          <p className="header gradient-text">JR-3WordsNFT Collections</p>
           <p className="sub-text">
           Our NFT 3 Words Each one is unique, with a nice background color.
           </p>
@@ -273,7 +273,7 @@ const App = () => {
         {renderOpenSeaInfo()}
         <div style={{margin:'50px'}}>
           <p className="sub-text">Some of our 3 Words NFT Collections</p>
-          <a href="https://testnets.opensea.io/collection/jr-squarenft-doctvrvpku" rel="noreferrer" target="_blank"  alt="3 words nft">
+          <a href="https://testnets.opensea.io/collection/jr-3wordsnft-v4" rel="noreferrer" target="_blank"  alt="3 words nft">
             <img src={collections} alt="nft collections" style={{width:'600px', margin: 'auto'}}/>
           </a>
         </div>
